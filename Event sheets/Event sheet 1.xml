@@ -472,9 +472,6 @@
                     <param id="1" name="Value">-1</param>
                 </action>
                 <action id="2" name="Stop" sid="416239631577168" type="Player" />
-                <action id="-18" name="Rotate clockwise" sid="618488681257535" type="TiledBackground">
-                    <param id="0" name="Degrees">0</param>
-                </action>
             </actions>
         </event-block>
     </events>
