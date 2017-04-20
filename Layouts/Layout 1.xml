@@ -2160,7 +2160,8 @@
                         <MoveTime>0.25</MoveTime>
                         <Timer>0</Timer>
                         <Player>1</Player>
-                        <OnCollision>false</OnCollision>
+                        <Next_X>96</Next_X>
+                        <Next_Y>96</Next_Y>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -2216,7 +2217,8 @@
                         <MoveTime>0.25</MoveTime>
                         <Timer>0</Timer>
                         <Player>2</Player>
-                        <OnCollision>false</OnCollision>
+                        <Next_X>96</Next_X>
+                        <Next_Y>96</Next_Y>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">

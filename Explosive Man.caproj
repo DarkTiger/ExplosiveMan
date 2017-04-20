@@ -87,7 +87,8 @@
                 <instance-variable name="MoveTime" sid="5273987931984742" type="number" />
                 <instance-variable name="Timer" sid="932147897939329" type="number" />
                 <instance-variable name="Player" sid="8298220414277754" type="number" />
-                <instance-variable name="OnCollision" sid="861323440826323" type="boolean" />
+                <instance-variable name="Next_X" sid="422209742304907" type="number" />
+                <instance-variable name="Next_Y" sid="149362303878984" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="992405947850211">
