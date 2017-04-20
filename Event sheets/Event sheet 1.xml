@@ -34,6 +34,9 @@
                                     <param id="0" name="Animation">&quot;Side&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="7" name="Set mirrored" sid="5023604882144218" type="Player">
+                                    <param id="0" name="State">1</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="6149529854225277">
@@ -50,6 +53,9 @@
                                 <action id="4" name="Set animation" sid="611693435172596" type="Player">
                                     <param id="0" name="Animation">&quot;Side&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="5724972937309037" type="Player">
+                                    <param id="0" name="State">0</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -184,6 +190,9 @@
                                     <param id="0" name="Animation">&quot;Side&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="7" name="Set mirrored" sid="5751066736367854" type="Player">
+                                    <param id="0" name="State">1</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="6149529854225277">
@@ -200,6 +209,9 @@
                                 <action id="4" name="Set animation" sid="611693435172596" type="Player">
                                     <param id="0" name="Animation">&quot;Side&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="2110416197760511" type="Player">
+                                    <param id="0" name="State">0</param>
                                 </action>
                             </actions>
                         </event-block>
