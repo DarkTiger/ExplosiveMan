@@ -18,7 +18,9 @@
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="replacecolor">Replace color</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
@@ -89,6 +91,11 @@
                     <behavior id="EightDir" />
                 </behavior-type>
             </behaviors>
+            <effects>
+                <effect-type name="ReplaceColor">
+                    <effect id="replacecolor" />
+                </effect-type>
+            </effects>
             <animation-folder>
                 <animation framecount="8" loop="0" name="Side" pingpong="0" repeatcount="1" repeatto="0" sid="1230720210279816" speed="16">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="\\Dbgadc1\programmers\SecondoProgettoConstruct\0_CommonAssets\Sprites\Bomberman\Side\Bman_F_f00.png">
