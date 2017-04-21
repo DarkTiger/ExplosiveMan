@@ -44,25 +44,44 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="335676681567258">
+                                <event-block sid="747136460233966">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="478131519543017" type="System">
-                                            <param id="0" name="First value">int(Player.Y)</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Second value">Player.Next_Y</param>
+                                        <condition id="-36" name="Pick overlapping point" sid="596200807161745" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Player.Next_X</param>
+                                            <param id="2" name="Y">Player.Next_Y-64</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-12" name="Subtract from" sid="286826355010021" type="Player">
-                                            <param id="0" name="Instance variable">Next_Y</param>
-                                            <param id="1" name="Value">GRID_SIZE_XY</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="487042320363117">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="716569736311516" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="335676681567258">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="478131519543017" type="System">
+                                                    <param id="0" name="First value">int(Player.Y)</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Second value">Player.Next_Y</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" sid="286826355010021" type="Player">
+                                                    <param id="0" name="Instance variable">Next_Y</param>
+                                                    <param id="1" name="Value">GRID_SIZE_XY</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
                         <event-block sid="9246864853321745">
                             <conditions>
+                                <condition id="-22" name="Else" sid="516006648455121" type="System" />
                                 <condition id="2" name="Key is down" sid="1691884369064116" type="Keyboard">
                                     <param id="0" name="Key">83 (S)</param>
                                 </condition>
@@ -78,25 +97,44 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="507983630784359">
+                                <event-block sid="261371011030180">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="351136989783790" type="System">
-                                            <param id="0" name="First value">int(Player.Y)</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Second value">Player.Next_Y</param>
+                                        <condition id="-36" name="Pick overlapping point" sid="900967556703169" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Player.Next_X</param>
+                                            <param id="2" name="Y">Player.Next_Y+64</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-11" name="Add to" sid="525726940295762" type="Player">
-                                            <param id="0" name="Instance variable">Next_Y</param>
-                                            <param id="1" name="Value">GRID_SIZE_XY</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="279668865786374">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="349172115487357" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="507983630784359">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="351136989783790" type="System">
+                                                    <param id="0" name="First value">int(Player.Y)</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">Player.Next_Y</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-11" name="Add to" sid="525726940295762" type="Player">
+                                                    <param id="0" name="Instance variable">Next_Y</param>
+                                                    <param id="1" name="Value">GRID_SIZE_XY</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
                         <event-block sid="3837952957925358">
                             <conditions>
+                                <condition id="-22" name="Else" sid="363900846592583" type="System" />
                                 <condition id="2" name="Key is down" sid="7950643692248544" type="Keyboard">
                                     <param id="0" name="Key">68 (D)</param>
                                 </condition>
@@ -115,25 +153,44 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="896397498544998">
+                                <event-block sid="133877502940407">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="466203228208967" type="System">
-                                            <param id="0" name="First value">int(Player.X)</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Second value">Player.Next_X</param>
+                                        <condition id="-36" name="Pick overlapping point" sid="618350758236807" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Player.Next_X+64</param>
+                                            <param id="2" name="Y">Player.Next_Y</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-11" name="Add to" sid="359317433275479" type="Player">
-                                            <param id="0" name="Instance variable">Next_X</param>
-                                            <param id="1" name="Value">GRID_SIZE_XY</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="566110267088655">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="679429411966995" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="896397498544998">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="466203228208967" type="System">
+                                                    <param id="0" name="First value">int(Player.X)</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">Player.Next_X</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-11" name="Add to" sid="359317433275479" type="Player">
+                                                    <param id="0" name="Instance variable">Next_X</param>
+                                                    <param id="1" name="Value">GRID_SIZE_XY</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
                         <event-block sid="6149529854225277">
                             <conditions>
+                                <condition id="-22" name="Else" sid="443230516395393" type="System" />
                                 <condition id="2" name="Key is down" sid="413616950442377" type="Keyboard">
                                     <param id="0" name="Key">65 (A)</param>
                                 </condition>
@@ -152,20 +209,38 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="265734936522143">
+                                <event-block sid="154471389903742">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="716701467212826" type="System">
-                                            <param id="0" name="First value">int(Player.X)</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Second value">Player.Next_X</param>
+                                        <condition id="-36" name="Pick overlapping point" sid="799814949594777" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Player.Next_X-64</param>
+                                            <param id="2" name="Y">Player.Next_Y</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-12" name="Subtract from" sid="830072600409379" type="Player">
-                                            <param id="0" name="Instance variable">Next_X</param>
-                                            <param id="1" name="Value">GRID_SIZE_XY</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                </event-block>
+                                <event-block sid="456241603742981">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="184935470125034" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="265734936522143">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="716701467212826" type="System">
+                                                    <param id="0" name="First value">int(Player.X)</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Second value">Player.Next_X</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" sid="830072600409379" type="Player">
+                                                    <param id="0" name="Instance variable">Next_X</param>
+                                                    <param id="1" name="Value">GRID_SIZE_XY</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -360,7 +435,7 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="2688055427900398" type="Player">
-                            <param id="0" name="X">Self.X + 2</param>
+                            <param id="0" name="X">Self.X + 4</param>
                         </action>
                     </actions>
                 </event-block>
@@ -379,7 +454,7 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="80220190442384" type="Player">
-                            <param id="0" name="X">Self.X - 2</param>
+                            <param id="0" name="X">Self.X - 4</param>
                         </action>
                     </actions>
                 </event-block>
@@ -398,7 +473,7 @@
                     </conditions>
                     <actions>
                         <action id="-2" name="Set Y" sid="397689315076155" type="Player">
-                            <param id="0" name="Y">Self.Y + 2</param>
+                            <param id="0" name="Y">Self.Y + 4</param>
                         </action>
                     </actions>
                 </event-block>
@@ -417,7 +492,7 @@
                     </conditions>
                     <actions>
                         <action id="-2" name="Set Y" sid="3814907826399564" type="Player">
-                            <param id="0" name="Y">Self.Y - 2</param>
+                            <param id="0" name="Y">Self.Y - 4</param>
                         </action>
                     </actions>
                 </event-block>
