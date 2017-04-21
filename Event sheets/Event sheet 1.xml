@@ -4,8 +4,6 @@
     <name>Event sheet 1</name>
     <events>
         <variable constant="1" name="GRID_SIZE_XY" sid="376851743993821" static="0" type="number">64</variable>
-        <variable constant="0" name="Player1_X" sid="385786457251731" static="0" type="number">96</variable>
-        <variable constant="0" name="Player1_Y" sid="266048236152831" static="0" type="number">96</variable>
         <variable constant="1" name="DIR_RIGHT" sid="8678467961629056" static="0" type="number">0</variable>
         <variable constant="1" name="DIR_DOWN" sid="2651873012600031" static="0" type="number">90</variable>
         <variable constant="1" name="DIR_LEFT" sid="2533391944972485" static="0" type="number">180</variable>
@@ -82,18 +80,16 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block disabled="1" sid="736389127726401">
+                <event-block sid="736389127726401">
                     <conditions>
                         <condition id="0" name="On key pressed" sid="296701752083173" type="Keyboard">
                             <param id="0" name="Key">32 (Barra Spaziatrice)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Create object" sid="500581484336849" type="System">
-                            <param id="0" name="Object to create">Bomb</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">int(Player.ImagePointX(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
-                            <param id="3" name="Y">int(Player.ImagePointY(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                        <action id="0" name="Call function" sid="534679366622507" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlaceBomb&quot;</param>
+                            <param id="1" name="Parameter {n}">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -152,6 +148,19 @@
                     <actions>
                         <action id="0" name="Call function" sid="759849825452214" type="FunctionManager">
                             <param id="0" name="Name">&quot;PlayerMovement_LEFT&quot;</param>
+                            <param id="1" name="Parameter {n}">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="388255573269342">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="411392913779594" type="Keyboard">
+                            <param id="0" name="Key">13 (Return)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="384104903760502" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlaceBomb&quot;</param>
                             <param id="1" name="Parameter {n}">2</param>
                         </action>
                     </actions>
@@ -253,7 +262,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block disabled="1" sid="282647534371294">
+        <event-block sid="282647534371294">
             <conditions>
                 <condition id="-18" name="On created" sid="711425509247653" type="Bomb" />
             </conditions>
@@ -265,13 +274,171 @@
                 </action>
             </actions>
         </event-block>
-        <event-block disabled="1" sid="922210306023323">
+        <event-block sid="922210306023323">
             <conditions>
                 <condition behavior="Timer" id="0" name="On timer" sid="186702452873568" type="Bomb">
                     <param id="0" name="Tag">&quot;ExplodeTimer&quot;</param>
                 </condition>
             </conditions>
             <actions />
+            <sub-events>
+                <variable constant="0" name="RightCollision" sid="669171115577545" static="0" type="number">0</variable>
+                <variable constant="0" name="LeftCollision" sid="978708903585461" static="0" type="number">0</variable>
+                <variable constant="0" name="UpCollision" sid="341822277982555" static="0" type="number">0</variable>
+                <variable constant="0" name="DownCollision" sid="670757722211733" static="0" type="number">0</variable>
+                <event-block sid="755308993588180">
+                    <conditions>
+                        <condition id="-10" name="For" sid="979941187674328" type="System">
+                            <param id="0" name="Name">&quot;FireCreateLoop&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="463564449778658" type="Bomb" />
+                        <action id="-3" name="Create object" sid="947550325851188" type="System">
+                            <param id="0" name="Object to create">Flame</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">Bomb.X</param>
+                            <param id="3" name="Y">Bomb.Y</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="840925052809236">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="926167198786184" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Bomb.X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                    <param id="2" name="Y">Bomb.Y</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="526595597952124" type="System">
+                                    <param id="0" name="Variable">RightCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="642296718271044">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="697221723101114" type="System" />
+                                <condition id="-14" name="Compare variable" sid="926558100438665" type="System">
+                                    <param id="0" name="Variable">RightCollision</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="127285270531112" type="System">
+                                    <param id="0" name="Object to create">Flame</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Bomb.X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                    <param id="3" name="Y">Bomb.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="145865744206149">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="599242062487106" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Bomb.X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                    <param id="2" name="Y">Bomb.Y</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="861376115401526" type="System">
+                                    <param id="0" name="Variable">LeftCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="569778049637474">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="106339736677034" type="System" />
+                                <condition id="-14" name="Compare variable" sid="874553012820388" type="System">
+                                    <param id="0" name="Variable">LeftCollision</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="502609288889455" type="System">
+                                    <param id="0" name="Object to create">Flame</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Bomb.X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                    <param id="3" name="Y">Bomb.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="579959869806485">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="144369194864344" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Bomb.X</param>
+                                    <param id="2" name="Y">Bomb.Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="474718434166899" type="System">
+                                    <param id="0" name="Variable">DownCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="607129963745066">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="241248844300129" type="System" />
+                                <condition id="-14" name="Compare variable" sid="201954659415579" type="System">
+                                    <param id="0" name="Variable">DownCollision</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="885640612548194" type="System">
+                                    <param id="0" name="Object to create">Flame</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Bomb.X</param>
+                                    <param id="3" name="Y">Bomb.Y+ (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="861273696934664">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="896087319276487" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Bomb.X</param>
+                                    <param id="2" name="Y">Bomb.Y- (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="558538294275480" type="System">
+                                    <param id="0" name="Variable">UpCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="759787772212734">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="450431487180968" type="System" />
+                                <condition id="-14" name="Compare variable" sid="787040726241210" type="System">
+                                    <param id="0" name="Variable">UpCollision</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="738142844098390" type="System">
+                                    <param id="0" name="Object to create">Flame</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Bomb.X</param>
+                                    <param id="3" name="Y">Bomb.Y- (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="704534564628006">
             <conditions>
@@ -283,251 +450,314 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="133127639399783">
-            <conditions>
-                <condition id="0" name="On function" sid="209660845464119" type="FunctionManager">
-                    <param id="0" name="Name">&quot;PlayerMovement_UP&quot;</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="315470729279141" type="Player">
-                    <param id="0" name="Instance variable">ID</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">FunctionManager.Param(0)</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="108603362193876" type="Player">
-                    <param id="0" name="Instance variable">Direction</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">-1</param>
-                </condition>
-            </conditions>
-            <actions />
+        <event-group description="" sid="236404370879167" title="Players Functions">
             <sub-events>
-                <event-block sid="118494993514820">
+                <event-block sid="376874778319665">
                     <conditions>
-                        <condition id="-36" name="Pick overlapping point" sid="690119347551524" type="System">
-                            <param id="0" name="Object">SolidObjects</param>
-                            <param id="1" name="X">Player.Next_X</param>
-                            <param id="2" name="Y">Player.Next_Y-GRID_SIZE_XY</param>
+                        <condition id="0" name="On function" sid="126572396612374" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlaceBomb&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="640957930252928" type="Player">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">FunctionManager.Param(0)</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-3" name="Create object" sid="500581484336849" type="System">
+                            <param id="0" name="Object to create">Bomb</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">int(Player.ImagePointX(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                            <param id="3" name="Y">int(Player.ImagePointY(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                        </action>
+                    </actions>
                 </event-block>
-                <event-block sid="886699613233405">
+                <event-block sid="133127639399783">
                     <conditions>
-                        <condition id="-22" name="Else" sid="692807094055884" type="System" />
+                        <condition id="0" name="On function" sid="209660845464119" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlayerMovement_UP&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="315470729279141" type="Player">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">FunctionManager.Param(0)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="108603362193876" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-10" name="Set value" sid="216997780850851" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Value">DIR_UP</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="807663380874877" type="Player">
+                            <param id="0" name="Animation">&quot;Back&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
                     <sub-events>
-                        <event-block sid="304045151898245">
+                        <event-block sid="118494993514820">
                             <conditions>
-                                <condition id="-2" name="Compare Y" sid="374585384268139" type="Player">
-                                    <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="Y co-ordinate">Self.Next_Y</param>
+                                <condition id="-36" name="Pick overlapping point" sid="690119347551524" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Player.Next_X</param>
+                                    <param id="2" name="Y">Player.Next_Y-GRID_SIZE_XY</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="216997780850851" type="Player">
-                                    <param id="0" name="Instance variable">Direction</param>
-                                    <param id="1" name="Value">DIR_UP</param>
-                                </action>
-                                <action id="4" name="Set animation" sid="807663380874877" type="Player">
-                                    <param id="0" name="Animation">&quot;Back&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action id="-12" name="Subtract from" sid="697246528203067" type="Player">
-                                    <param id="0" name="Instance variable">Next_Y</param>
-                                    <param id="1" name="Value">GRID_SIZE_XY</param>
-                                </action>
-                            </actions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="886699613233405">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="692807094055884" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="304045151898245">
+                                    <conditions>
+                                        <condition id="-2" name="Compare Y" sid="374585384268139" type="Player">
+                                            <param id="0" name="Comparison">3</param>
+                                            <param id="1" name="Y co-ordinate">Self.Next_Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="697246528203067" type="Player">
+                                            <param id="0" name="Instance variable">Next_Y</param>
+                                            <param id="1" name="Value">GRID_SIZE_XY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="527698831599739">
+                    <conditions>
+                        <condition id="0" name="On function" sid="348615387238650" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlayerMovement_DOWN&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="662090463437122" type="Player">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">FunctionManager.Param(0)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="154176744614691" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="804490825918893" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Value">DIR_DOWN</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="505724873663348" type="Player">
+                            <param id="0" name="Animation">&quot;Front&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="567097869020949">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="735997156174775" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Player.Next_X</param>
+                                    <param id="2" name="Y">Player.Next_Y+GRID_SIZE_XY</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="354153219920715">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="976616298472659" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="210148412453681">
+                                    <conditions>
+                                        <condition id="-2" name="Compare Y" sid="145852707576577" type="Player">
+                                            <param id="0" name="Comparison">5</param>
+                                            <param id="1" name="Y co-ordinate">Self.Next_Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Add to" sid="160961084162541" type="Player">
+                                            <param id="0" name="Instance variable">Next_Y</param>
+                                            <param id="1" name="Value">GRID_SIZE_XY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="861033270756887">
+                    <conditions>
+                        <condition id="0" name="On function" sid="829011258887505" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlayerMovement_LEFT&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="345452385997439" type="Player">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">FunctionManager.Param(0)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="580803726040234" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="859080226688307" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Value">DIR_LEFT</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="166827063934704" type="Player">
+                            <param id="0" name="Animation">&quot;Side&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="735568105947008" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="606080731202214">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="621392240436526" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Player.Next_X-GRID_SIZE_XY</param>
+                                    <param id="2" name="Y">Player.Next_Y</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="777851724465435">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="204340977732812" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="386794552067798">
+                                    <conditions>
+                                        <condition id="-1" name="Compare X" sid="827322042589048" type="Player">
+                                            <param id="0" name="Comparison">3</param>
+                                            <param id="1" name="X co-ordinate">Player.Next_X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="159077359704909" type="Player">
+                                            <param id="0" name="Instance variable">Next_X</param>
+                                            <param id="1" name="Value">GRID_SIZE_XY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="556906042214875">
+                    <conditions>
+                        <condition id="0" name="On function" sid="598395193544661" type="FunctionManager">
+                            <param id="0" name="Name">&quot;PlayerMovement_RIGHT&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="293986485117479" type="Player">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">FunctionManager.Param(0)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="707071141957030" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="794124655302906" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Value">DIR_RIGHT</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="192302817343987" type="Player">
+                            <param id="0" name="Animation">&quot;Side&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="940370168523609" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="575922489250852">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="415672682308235" type="System">
+                                    <param id="0" name="Object">SolidObjects</param>
+                                    <param id="1" name="X">Player.Next_X+GRID_SIZE_XY</param>
+                                    <param id="2" name="Y">Player.Next_Y</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="463450212122911">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="601499273314883" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="584830330366272">
+                                    <conditions>
+                                        <condition id="-1" name="Compare X" sid="987517951595806" type="Player">
+                                            <param id="0" name="Comparison">5</param>
+                                            <param id="1" name="X co-ordinate">Player.Next_X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Add to" sid="204048816436942" type="Player">
+                                            <param id="0" name="Instance variable">Next_X</param>
+                                            <param id="1" name="Value">GRID_SIZE_XY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-group>
+        <event-block disabled="1" sid="121162467910676">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="980328364847644" type="ExplosiveBlock">
+                    <param id="0" name="Object">Flame</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action disabled="1" id="0" name="Spawn another object" sid="666439093861557" type="ExplosiveBlock">
+                    <param id="0" name="Object">Flame</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="345749448949162" type="ExplosiveBlock" />
+            </actions>
         </event-block>
-        <event-block sid="527698831599739">
+        <event-block sid="899240209644561">
             <conditions>
-                <condition id="0" name="On function" sid="348615387238650" type="FunctionManager">
-                    <param id="0" name="Name">&quot;PlayerMovement_DOWN&quot;</param>
+                <condition id="1" name="Is overlapping another object" sid="301362916868166" type="Flame">
+                    <param id="0" name="Object">ExplosiveBlock</param>
                 </condition>
-                <condition id="-7" name="Compare instance variable" sid="662090463437122" type="Player">
-                    <param id="0" name="Instance variable">ID</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">FunctionManager.Param(0)</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="154176744614691" type="Player">
-                    <param id="0" name="Instance variable">Direction</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">-1</param>
+                <condition id="-10" name="Compare opacity" sid="418815949735820" type="Flame">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Opacity">10</param>
                 </condition>
             </conditions>
-            <actions />
-            <sub-events>
-                <event-block sid="567097869020949">
-                    <conditions>
-                        <condition id="-36" name="Pick overlapping point" sid="735997156174775" type="System">
-                            <param id="0" name="Object">SolidObjects</param>
-                            <param id="1" name="X">Player.Next_X</param>
-                            <param id="2" name="Y">Player.Next_Y+GRID_SIZE_XY</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                </event-block>
-                <event-block sid="354153219920715">
-                    <conditions>
-                        <condition id="-22" name="Else" sid="976616298472659" type="System" />
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="210148412453681">
-                            <conditions>
-                                <condition id="-2" name="Compare Y" sid="145852707576577" type="Player">
-                                    <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Y co-ordinate">Self.Next_Y</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="804490825918893" type="Player">
-                                    <param id="0" name="Instance variable">Direction</param>
-                                    <param id="1" name="Value">DIR_DOWN</param>
-                                </action>
-                                <action id="4" name="Set animation" sid="505724873663348" type="Player">
-                                    <param id="0" name="Animation">&quot;Front&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action id="-11" name="Add to" sid="160961084162541" type="Player">
-                                    <param id="0" name="Instance variable">Next_Y</param>
-                                    <param id="1" name="Value">GRID_SIZE_XY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <event-block sid="861033270756887">
-            <conditions>
-                <condition id="0" name="On function" sid="829011258887505" type="FunctionManager">
-                    <param id="0" name="Name">&quot;PlayerMovement_LEFT&quot;</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="345452385997439" type="Player">
-                    <param id="0" name="Instance variable">ID</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">FunctionManager.Param(0)</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="580803726040234" type="Player">
-                    <param id="0" name="Instance variable">Direction</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">-1</param>
-                </condition>
-            </conditions>
-            <actions />
-            <sub-events>
-                <event-block sid="606080731202214">
-                    <conditions>
-                        <condition id="-36" name="Pick overlapping point" sid="621392240436526" type="System">
-                            <param id="0" name="Object">SolidObjects</param>
-                            <param id="1" name="X">Player.Next_X-GRID_SIZE_XY</param>
-                            <param id="2" name="Y">Player.Next_Y</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                </event-block>
-                <event-block sid="777851724465435">
-                    <conditions>
-                        <condition id="-22" name="Else" sid="204340977732812" type="System" />
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="386794552067798">
-                            <conditions>
-                                <condition id="-1" name="Compare X" sid="827322042589048" type="Player">
-                                    <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="X co-ordinate">Player.Next_X</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="859080226688307" type="Player">
-                                    <param id="0" name="Instance variable">Direction</param>
-                                    <param id="1" name="Value">DIR_LEFT</param>
-                                </action>
-                                <action id="4" name="Set animation" sid="166827063934704" type="Player">
-                                    <param id="0" name="Animation">&quot;Side&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action id="7" name="Set mirrored" sid="735568105947008" type="Player">
-                                    <param id="0" name="State">0</param>
-                                </action>
-                                <action id="-12" name="Subtract from" sid="159077359704909" type="Player">
-                                    <param id="0" name="Instance variable">Next_X</param>
-                                    <param id="1" name="Value">GRID_SIZE_XY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <event-block sid="556906042214875">
-            <conditions>
-                <condition id="0" name="On function" sid="598395193544661" type="FunctionManager">
-                    <param id="0" name="Name">&quot;PlayerMovement_RIGHT&quot;</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="293986485117479" type="Player">
-                    <param id="0" name="Instance variable">ID</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">FunctionManager.Param(0)</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="707071141957030" type="Player">
-                    <param id="0" name="Instance variable">Direction</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">-1</param>
-                </condition>
-            </conditions>
-            <actions />
-            <sub-events>
-                <event-block sid="575922489250852">
-                    <conditions>
-                        <condition id="-36" name="Pick overlapping point" sid="415672682308235" type="System">
-                            <param id="0" name="Object">SolidObjects</param>
-                            <param id="1" name="X">Player.Next_X+GRID_SIZE_XY</param>
-                            <param id="2" name="Y">Player.Next_Y</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                </event-block>
-                <event-block sid="463450212122911">
-                    <conditions>
-                        <condition id="-22" name="Else" sid="601499273314883" type="System" />
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="584830330366272">
-                            <conditions>
-                                <condition id="-1" name="Compare X" sid="987517951595806" type="Player">
-                                    <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="X co-ordinate">Player.Next_X</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="794124655302906" type="Player">
-                                    <param id="0" name="Instance variable">Direction</param>
-                                    <param id="1" name="Value">DIR_RIGHT</param>
-                                </action>
-                                <action id="4" name="Set animation" sid="192302817343987" type="Player">
-                                    <param id="0" name="Animation">&quot;Side&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action id="7" name="Set mirrored" sid="940370168523609" type="Player">
-                                    <param id="0" name="State">1</param>
-                                </action>
-                                <action id="-11" name="Add to" sid="204048816436942" type="Player">
-                                    <param id="0" name="Instance variable">Next_X</param>
-                                    <param id="1" name="Value">GRID_SIZE_XY</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
+            <actions>
+                <action id="-3" name="Create object" sid="789916468797431" type="System">
+                    <param id="0" name="Object to create">Flame</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">ExplosiveBlock.X + 32</param>
+                    <param id="3" name="Y">ExplosiveBlock.Y + 32</param>
+                </action>
+                <action id="-9" name="Destroy" sid="415186446189763" type="ExplosiveBlock" />
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>
