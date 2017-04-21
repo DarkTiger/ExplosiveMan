@@ -10,6 +10,7 @@
     <unique-id>1ylfndb7i2wuo</unique-id>
     <saved-with-version>24400</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -86,7 +87,7 @@
                 <instance-variable name="Speed" sid="4967237083134432" type="number" />
                 <instance-variable name="MoveTime" sid="5273987931984742" type="number" />
                 <instance-variable name="Timer" sid="932147897939329" type="number" />
-                <instance-variable name="Player" sid="8298220414277754" type="number" />
+                <instance-variable name="ID" sid="8298220414277754" type="number" />
                 <instance-variable name="Next_X" sid="422209742304907" type="number" />
                 <instance-variable name="Next_Y" sid="149362303878984" type="number" />
             </instance-variables>
@@ -326,6 +327,9 @@
         <object-type name="Text" sid="529315459761150">
             <plugin id="Text" />
         </object-type>
+        <object-type name="FunctionManager" sid="366312419630355">
+            <plugin id="Function" />
+        </object-type>
     </object-folder>
     <families>
         <family name="SolidObjects" plugin-id="Sprite" sid="285526534571891">
@@ -345,6 +349,7 @@
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="73" />
+        <global-instance type="FunctionManager" uid="41" />
     </global-instances>
     <sounds-folder />
     <music-folder />

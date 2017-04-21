@@ -2159,7 +2159,7 @@
                         <Speed>50</Speed>
                         <MoveTime>0.25</MoveTime>
                         <Timer>0</Timer>
-                        <Player>1</Player>
+                        <ID>1</ID>
                         <Next_X>96</Next_X>
                         <Next_Y>96</Next_Y>
                     </instance-variables>
@@ -2195,8 +2195,8 @@
                         <x>96</x>
                         <y>96</y>
                         <z>0</z>
-                        <width>37.947330475</width>
-                        <height>75.89466095</height>
+                        <width>45</width>
+                        <height>90</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.625</hotspotY>
@@ -2216,9 +2216,9 @@
                         <Speed>50</Speed>
                         <MoveTime>0.25</MoveTime>
                         <Timer>0</Timer>
-                        <Player>2</Player>
-                        <Next_X>96</Next_X>
-                        <Next_Y>96</Next_Y>
+                        <ID>2</ID>
+                        <Next_X>544</Next_X>
+                        <Next_Y>544</Next_Y>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -2249,8 +2249,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>448</x>
-                        <y>448</y>
+                        <x>544</x>
+                        <y>544</y>
                         <z>0</z>
                         <width>45</width>
                         <height>90</height>
