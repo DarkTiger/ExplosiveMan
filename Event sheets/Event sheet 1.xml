@@ -202,7 +202,7 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="2688055427900398" type="Player">
-                            <param id="0" name="X">Self.X + 4</param>
+                            <param id="0" name="X">Self.X + Self.Speed</param>
                         </action>
                     </actions>
                 </event-block>
@@ -220,7 +220,7 @@
                     </conditions>
                     <actions>
                         <action id="-1" name="Set X" sid="80220190442384" type="Player">
-                            <param id="0" name="X">Self.X - 4</param>
+                            <param id="0" name="X">Self.X - Self.Speed</param>
                         </action>
                     </actions>
                 </event-block>
@@ -238,7 +238,7 @@
                     </conditions>
                     <actions>
                         <action id="-2" name="Set Y" sid="397689315076155" type="Player">
-                            <param id="0" name="Y">Self.Y + 4</param>
+                            <param id="0" name="Y">Self.Y + Self.Speed</param>
                         </action>
                     </actions>
                 </event-block>
@@ -256,13 +256,13 @@
                     </conditions>
                     <actions>
                         <action id="-2" name="Set Y" sid="3814907826399564" type="Player">
-                            <param id="0" name="Y">Self.Y - 4</param>
+                            <param id="0" name="Y">Self.Y - Self.Speed</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="236404370879167" title="Players Functions">
+        <event-group description="" sid="236404370879167" title="Functions">
             <sub-events>
                 <event-block sid="376874778319665">
                     <conditions>
@@ -281,6 +281,10 @@
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="X">int(Player.ImagePointX(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
                             <param id="3" name="Y">int(Player.ImagePointY(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="894849964566769" type="Player">
+                            <param id="0" name="Instance variable">CurrentBombs</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -551,7 +555,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Set text" sid="864404787107965" type="Text">
+                                <action id="0" name="Set text" sid="864404787107965" type="Messages">
                                     <param id="0" name="Text">&quot;Player 2 WIN!!!&quot;</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="381915807602209" type="System">
@@ -565,7 +569,7 @@
                                 <condition id="-22" name="Else" sid="910771288791669" type="System" />
                             </conditions>
                             <actions>
-                                <action id="0" name="Set text" sid="989667412276548" type="Text">
+                                <action id="0" name="Set text" sid="989667412276548" type="Messages">
                                     <param id="0" name="Text">&quot;Player 1 WIN!!!&quot;</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="850425961551475" type="System">
@@ -573,6 +577,20 @@
                                 </action>
                                 <action id="-26" name="Restart layout" sid="962782541378196" type="System" />
                             </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="462284874823828">
+                    <conditions>
+                        <condition id="0" name="On function" sid="191973143192202" type="FunctionManager">
+                            <param id="0" name="Name">&quot;OnExplodeBomb&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="573766075271884">
+                            <conditions />
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -616,6 +634,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <variable constant="0" name="FlameSize" sid="127533499227803" static="0" type="number">2</variable>
                         <variable constant="0" name="RightCollision" sid="669171115577545" static="0" type="number">0</variable>
                         <variable constant="0" name="LeftCollision" sid="978708903585461" static="0" type="number">0</variable>
                         <variable constant="0" name="UpCollision" sid="341822277982555" static="0" type="number">0</variable>
@@ -627,7 +646,7 @@
                                 <condition id="-10" name="For" sid="979941187674328" type="System">
                                     <param id="0" name="Name">&quot;FireCreateLoop&quot;</param>
                                     <param id="1" name="Start index">1</param>
-                                    <param id="2" name="End index">2</param>
+                                    <param id="2" name="End index">FlameSize</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -1017,5 +1036,112 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="" sid="701194136474320" title="PowerUPs">
+            <sub-events>
+                <event-block sid="842278299311586">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="717484346581979" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="233438981776882">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="309226197255021" type="Player">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="356996780297734" type="HUD_P1">
+                                    <param id="0" name="Text">&quot;PLAYER1:  Bombs: &quot; &amp; Player.BombCount &amp; &quot;, Flame: &quot; &amp; Player.FlameSize &amp; &quot;, Speed: &quot; &amp; Player.Speed </param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="156633156262745">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="306286714721372" type="Player">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="943223584425766" type="HUD_P2">
+                                    <param id="0" name="Text">&quot;PLAYER2:  Bombs: &quot; &amp; Player.BombCount &amp; &quot;, Flame: &quot; &amp; Player.FlameSize &amp; &quot;, Speed: &quot; &amp; Player.Speed </param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="729756505938477">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="559293466128242" type="PowerUP" />
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-10" name="Set value" sid="733236154640407" type="PowerUP">
+                            <param id="0" name="Instance variable">index</param>
+                            <param id="1" name="Value">round(random(0,3))</param>
+                        </action>
+                        <action id="5" name="Set frame" sid="698073206491564" type="PowerUP">
+                            <param id="0" name="Frame number">Powerup.index</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="780430809014578">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="245938483462246" type="ExplosiveBlock" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="702963795780469" type="ExplosiveBlock">
+                    <param id="0" name="Object">PowerUP</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="232755513512992">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="111350364150367" type="Player">
+                    <param id="0" name="Instance variable">Direction</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">-1</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="966703215487931" type="Player">
+                    <param id="0" name="Instance variable">Speed</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">16</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="149651637848947">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="630063477639665" type="Player">
+                            <param id="0" name="Object">PowerUP</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="790429798003356" type="PowerUP" />
+                        <action id="-10" name="Set value" sid="419308488866513" type="Player">
+                            <param id="0" name="Instance variable">Speed</param>
+                            <param id="1" name="Value">Self.Speed * 2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="462974994746779">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="842656192711608" type="Player">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
     </events>
 </c2eventsheet>

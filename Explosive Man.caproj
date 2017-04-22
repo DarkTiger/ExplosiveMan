@@ -86,13 +86,14 @@
         <object-type name="Player" sid="8233049549472308">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="Direction" sid="3791511614991793" type="number" />
-                <instance-variable name="Speed" sid="4967237083134432" type="number" />
-                <instance-variable name="MoveTime" sid="5273987931984742" type="number" />
-                <instance-variable name="Timer" sid="932147897939329" type="number" />
                 <instance-variable name="ID" sid="8298220414277754" type="number" />
+                <instance-variable name="Direction" sid="3791511614991793" type="number" />
                 <instance-variable name="Next_X" sid="422209742304907" type="number" />
                 <instance-variable name="Next_Y" sid="149362303878984" type="number" />
+                <instance-variable name="Speed" sid="4967237083134432" type="number" />
+                <instance-variable name="BombCount" sid="970210382769140" type="number" />
+                <instance-variable name="FlameSize" sid="163369085024301" type="number" />
+                <instance-variable name="CurrentBombs" sid="652103543584363" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="992405947850211">
@@ -105,7 +106,7 @@
                 </effect-type>
             </effects>
             <animation-folder>
-                <animation framecount="8" loop="1" name="Side" pingpong="0" repeatcount="1" repeatto="0" sid="1230720210279816" speed="20">
+                <animation framecount="8" loop="1" name="Side" pingpong="0" repeatcount="1" repeatto="0" sid="1230720210279816" speed="15">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.625" original-source="\\Dbgadc1\programmers\SecondoProgettoConstruct\0_CommonAssets\Sprites\Bomberman\Side\Bman_F_f00.png">
                         <collision-poly>
                             <point x="0" y="0.320313" />
@@ -342,11 +343,41 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Text" sid="529315459761150">
+        <object-type name="Messages" sid="529315459761150">
             <plugin id="Text" />
         </object-type>
         <object-type name="FunctionManager" sid="366312419630355">
             <plugin id="Function" />
+        </object-type>
+        <object-type name="PowerUP" sid="686039242138652">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="index" sid="320879928439667" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="810827657033099" speed="0">
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\danie\Downloads\SpeedPowerup.png">
+                        <collision-poly>
+                            <point x="0.03125" y="0.03125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.96875" y="0.03125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.96875" y="0.96875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.03125" y="0.96875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\danie\Downloads\FlamePowerup.png" />
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\danie\Downloads\BombPowerup.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_P1" sid="878432219888163">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="HUD_P2" sid="712261627195560">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>
