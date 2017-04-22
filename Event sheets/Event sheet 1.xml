@@ -1079,7 +1079,7 @@
                         <condition id="-18" name="On created" sid="559293466128242" type="PowerUP" />
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-10" name="Set value" sid="733236154640407" type="PowerUP">
+                        <action id="-10" name="Set value" sid="733236154640407" type="PowerUP">
                             <param id="0" name="Instance variable">index</param>
                             <param id="1" name="Value">round(random(0,3))</param>
                         </action>
@@ -1102,46 +1102,48 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="232755513512992">
+        <event-block sid="149651637848947">
             <conditions>
-                <condition id="-7" name="Compare instance variable" sid="111350364150367" type="Player">
-                    <param id="0" name="Instance variable">Direction</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">-1</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="966703215487931" type="Player">
-                    <param id="0" name="Instance variable">Speed</param>
-                    <param id="1" name="Comparison">2</param>
-                    <param id="2" name="Value">16</param>
+                <condition id="1" name="Is overlapping another object" sid="630063477639665" type="Player">
+                    <param id="0" name="Object">PowerUP</param>
                 </condition>
             </conditions>
             <actions />
             <sub-events>
-                <event-block sid="149651637848947">
+                <event-block sid="646609483531935">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="630063477639665" type="Player">
-                            <param id="0" name="Object">PowerUP</param>
+                        <condition id="-7" name="Compare instance variable" sid="668217120259825" type="Player">
+                            <param id="0" name="Instance variable">Direction</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">-1</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="790429798003356" type="PowerUP" />
-                        <action id="-10" name="Set value" sid="419308488866513" type="Player">
-                            <param id="0" name="Instance variable">Speed</param>
-                            <param id="1" name="Value">Self.Speed * 2</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="232755513512992">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="966703215487931" type="Player">
+                                    <param id="0" name="Instance variable">Speed</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">16</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="754355787317784" type="PowerUP">
+                                    <param id="0" name="Instance variable">index</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="790429798003356" type="PowerUP" />
+                                <action id="-10" name="Set value" sid="419308488866513" type="Player">
+                                    <param id="0" name="Instance variable">Speed</param>
+                                    <param id="1" name="Value">Self.Speed * 2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
-        </event-block>
-        <event-block sid="462974994746779">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="842656192711608" type="Player">
-                    <param id="0" name="Instance variable">ID</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">1</param>
-                </condition>
-            </conditions>
-            <actions />
         </event-block>
     </events>
 </c2eventsheet>
