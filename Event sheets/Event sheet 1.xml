@@ -167,7 +167,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="1201331092866191" title="BombersMovement">
+        <event-group description="" sid="1201331092866191" title="Players Movement">
             <sub-events>
                 <event-block sid="567642575054714">
                     <conditions>
@@ -262,194 +262,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="282647534371294">
-            <conditions>
-                <condition id="-18" name="On created" sid="711425509247653" type="Bomb" />
-            </conditions>
-            <actions>
-                <action behavior="Timer" id="0" name="Start timer" sid="278854804658703" type="Bomb">
-                    <param id="0" name="Duration">3</param>
-                    <param id="1" name="Type">0</param>
-                    <param id="2" name="Tag">&quot;ExplodeTimer&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="922210306023323">
-            <conditions>
-                <condition behavior="Timer" id="0" name="On timer" sid="186702452873568" type="Bomb">
-                    <param id="0" name="Tag">&quot;ExplodeTimer&quot;</param>
-                </condition>
-            </conditions>
-            <actions />
-            <sub-events>
-                <variable constant="0" name="RightCollision" sid="669171115577545" static="0" type="number">0</variable>
-                <variable constant="0" name="LeftCollision" sid="978708903585461" static="0" type="number">0</variable>
-                <variable constant="0" name="UpCollision" sid="341822277982555" static="0" type="number">0</variable>
-                <variable constant="0" name="DownCollision" sid="670757722211733" static="0" type="number">0</variable>
-                <event-block sid="755308993588180">
-                    <conditions>
-                        <condition id="-10" name="For" sid="979941187674328" type="System">
-                            <param id="0" name="Name">&quot;FireCreateLoop&quot;</param>
-                            <param id="1" name="Start index">1</param>
-                            <param id="2" name="End index">3</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="463564449778658" type="Bomb" />
-                        <action id="-3" name="Create object" sid="947550325851188" type="System">
-                            <param id="0" name="Object to create">Flame</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">Bomb.X</param>
-                            <param id="3" name="Y">Bomb.Y</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block sid="840925052809236">
-                            <conditions>
-                                <condition id="-36" name="Pick overlapping point" sid="926167198786184" type="System">
-                                    <param id="0" name="Object">SolidObjects</param>
-                                    <param id="1" name="X">Bomb.X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                    <param id="2" name="Y">Bomb.Y</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="526595597952124" type="System">
-                                    <param id="0" name="Variable">RightCollision</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="642296718271044">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="697221723101114" type="System" />
-                                <condition id="-14" name="Compare variable" sid="926558100438665" type="System">
-                                    <param id="0" name="Variable">RightCollision</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="127285270531112" type="System">
-                                    <param id="0" name="Object to create">Flame</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Bomb.X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                    <param id="3" name="Y">Bomb.Y</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="145865744206149">
-                            <conditions>
-                                <condition id="-36" name="Pick overlapping point" sid="599242062487106" type="System">
-                                    <param id="0" name="Object">SolidObjects</param>
-                                    <param id="1" name="X">Bomb.X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                    <param id="2" name="Y">Bomb.Y</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="861376115401526" type="System">
-                                    <param id="0" name="Variable">LeftCollision</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="569778049637474">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="106339736677034" type="System" />
-                                <condition id="-14" name="Compare variable" sid="874553012820388" type="System">
-                                    <param id="0" name="Variable">LeftCollision</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="502609288889455" type="System">
-                                    <param id="0" name="Object to create">Flame</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Bomb.X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                    <param id="3" name="Y">Bomb.Y</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="579959869806485">
-                            <conditions>
-                                <condition id="-36" name="Pick overlapping point" sid="144369194864344" type="System">
-                                    <param id="0" name="Object">SolidObjects</param>
-                                    <param id="1" name="X">Bomb.X</param>
-                                    <param id="2" name="Y">Bomb.Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="474718434166899" type="System">
-                                    <param id="0" name="Variable">DownCollision</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="607129963745066">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="241248844300129" type="System" />
-                                <condition id="-14" name="Compare variable" sid="201954659415579" type="System">
-                                    <param id="0" name="Variable">DownCollision</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="885640612548194" type="System">
-                                    <param id="0" name="Object to create">Flame</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Bomb.X</param>
-                                    <param id="3" name="Y">Bomb.Y+ (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="861273696934664">
-                            <conditions>
-                                <condition id="-36" name="Pick overlapping point" sid="896087319276487" type="System">
-                                    <param id="0" name="Object">SolidObjects</param>
-                                    <param id="1" name="X">Bomb.X</param>
-                                    <param id="2" name="Y">Bomb.Y- (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="558538294275480" type="System">
-                                    <param id="0" name="Variable">UpCollision</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="759787772212734">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="450431487180968" type="System" />
-                                <condition id="-14" name="Compare variable" sid="787040726241210" type="System">
-                                    <param id="0" name="Variable">UpCollision</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="738142844098390" type="System">
-                                    <param id="0" name="Object to create">Flame</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Bomb.X</param>
-                                    <param id="3" name="Y">Bomb.Y- (64*loopindex(&quot;FireCreateLoop&quot;))</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <event-block sid="704534564628006">
-            <conditions>
-                <condition id="-1" name="Every tick" sid="774888811092558" type="System" />
-            </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="599141286546503" type="Text">
-                    <param id="0" name="Text">Player.Next_X &amp; &quot;    &quot; &amp; int(Player.X) &amp; &quot;   -  &quot; &amp; Player.Next_Y &amp; &quot;    &quot; &amp; int(Player.Y)</param>
-                </action>
-            </actions>
-        </event-block>
         <event-group description="" sid="236404370879167" title="Players Functions">
             <sub-events>
                 <event-block sid="376874778319665">
@@ -722,42 +534,488 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <event-block sid="356286752549211">
+                    <conditions>
+                        <condition id="0" name="On function" sid="194536883899243" type="FunctionManager">
+                            <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="649988969835766">
+                            <conditions>
+                                <condition id="1" name="Compare parameter" sid="849343320742469" type="FunctionManager">
+                                    <param id="0" name="Index">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="864404787107965" type="Text">
+                                    <param id="0" name="Text">&quot;Player 2 WIN!!!&quot;</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="381915807602209" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-26" name="Restart layout" sid="623983954656778" type="System" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="961886533305053">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="910771288791669" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="989667412276548" type="Text">
+                                    <param id="0" name="Text">&quot;Player 1 WIN!!!&quot;</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="850425961551475" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-26" name="Restart layout" sid="962782541378196" type="System" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
-        <event-block disabled="1" sid="121162467910676">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="980328364847644" type="ExplosiveBlock">
-                    <param id="0" name="Object">Flame</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action disabled="1" id="0" name="Spawn another object" sid="666439093861557" type="ExplosiveBlock">
-                    <param id="0" name="Object">Flame</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action id="-9" name="Destroy" sid="345749448949162" type="ExplosiveBlock" />
-            </actions>
-        </event-block>
-        <event-block sid="899240209644561">
-            <conditions>
-                <condition id="1" name="Is overlapping another object" sid="301362916868166" type="Flame">
-                    <param id="0" name="Object">ExplosiveBlock</param>
-                </condition>
-                <condition id="-10" name="Compare opacity" sid="418815949735820" type="Flame">
-                    <param id="0" name="Comparison">2</param>
-                    <param id="1" name="Opacity">10</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="789916468797431" type="System">
-                    <param id="0" name="Object to create">Flame</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">ExplosiveBlock.X + 32</param>
-                    <param id="3" name="Y">ExplosiveBlock.Y + 32</param>
-                </action>
-                <action id="-9" name="Destroy" sid="415186446189763" type="ExplosiveBlock" />
-            </actions>
-        </event-block>
+        <event-group description="" sid="448183901345455" title="Bomb Management">
+            <sub-events>
+                <event-block sid="699897823002427">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="534477443468970" type="Bomb">
+                            <param id="0" name="Object">Flame</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="623933961153671" type="Bomb">
+                            <param id="0" name="Instance variable">Explode</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="282647534371294">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="711425509247653" type="Bomb" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Timer" id="0" name="Start timer" sid="278854804658703" type="Bomb">
+                            <param id="0" name="Duration">3</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;ExplodeTimer&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="922210306023323">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="186702452873568" type="Bomb">
+                            <param id="0" name="Tag">&quot;ExplodeTimer&quot;</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="984624065056431" type="Bomb">
+                            <param id="0" name="Instance variable">Explode</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable constant="0" name="RightCollision" sid="669171115577545" static="0" type="number">0</variable>
+                        <variable constant="0" name="LeftCollision" sid="978708903585461" static="0" type="number">0</variable>
+                        <variable constant="0" name="UpCollision" sid="341822277982555" static="0" type="number">0</variable>
+                        <variable constant="0" name="DownCollision" sid="670757722211733" static="0" type="number">0</variable>
+                        <variable constant="0" name="Explosion_X" sid="339842476312783" static="0" type="number">0</variable>
+                        <variable constant="0" name="Explosion_Y" sid="705984021117546" static="0" type="number">0</variable>
+                        <event-block sid="755308993588180">
+                            <conditions>
+                                <condition id="-10" name="For" sid="979941187674328" type="System">
+                                    <param id="0" name="Name">&quot;FireCreateLoop&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="401258794565260" type="System">
+                                    <param id="0" name="Variable">Explosion_X</param>
+                                    <param id="1" name="Value">Bomb.X</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="329135179592637" type="System">
+                                    <param id="0" name="Variable">Explosion_Y</param>
+                                    <param id="1" name="Value">Bomb.Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="947550325851188" type="System">
+                                    <param id="0" name="Object to create">Flame</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Explosion_X</param>
+                                    <param id="3" name="Y">Explosion_Y</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="463564449778658" type="Bomb" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="374122893302855">
+                                    <conditions>
+                                        <condition id="-1" name="Compare X" sid="279176449603279" type="Player">
+                                            <param id="0" name="Comparison">0</param>
+                                            <param id="1" name="X co-ordinate">Explosion_X</param>
+                                        </condition>
+                                        <condition id="-2" name="Compare Y" sid="592671982213725" type="Player">
+                                            <param id="0" name="Comparison">0</param>
+                                            <param id="1" name="Y co-ordinate">Explosion_Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="780688107858576" type="Player" />
+                                        <action id="0" name="Call function" sid="819463397011792" type="FunctionManager">
+                                            <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                                            <param id="1" name="Parameter {n}">Player.ID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="840925052809236">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="926167198786184" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                            <param id="2" name="Y">Explosion_Y</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="170540596945795" type="System">
+                                            <param id="0" name="Variable">RightCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="526595597952124" type="System">
+                                            <param id="0" name="Variable">RightCollision</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="224652199644845">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="372472086451095" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="620853066734678" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="772175822166037" type="Player" />
+                                                <action id="-3" name="Create object" sid="161943317660929" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                    <param id="3" name="Y">Explosion_Y</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="688760919692473" type="FunctionManager">
+                                                    <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Player.ID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="296809881827723">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="535381810782120" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">(Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))) -32</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="977746300796602" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y-32</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="465863455473604" type="ExplosiveBlock" />
+                                                <action id="-3" name="Create object" sid="483051173779743" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                    <param id="3" name="Y">Explosion_Y</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="642296718271044">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="697221723101114" type="System" />
+                                        <condition id="-14" name="Compare variable" sid="926558100438665" type="System">
+                                            <param id="0" name="Variable">RightCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="127285270531112" type="System">
+                                            <param id="0" name="Object to create">Flame</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Explosion_X + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                            <param id="3" name="Y">Explosion_Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="145865744206149">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="599242062487106" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                            <param id="2" name="Y">Explosion_Y</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="958813731412311" type="System">
+                                            <param id="0" name="Variable">LeftCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="802903817490747" type="System">
+                                            <param id="0" name="Variable">LeftCollision</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="275550590558479">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="163759103429836" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="646013051006219" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="308820471646524" type="Player" />
+                                                <action id="-3" name="Create object" sid="832262524368751" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                    <param id="3" name="Y">Explosion_Y</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="847170933293610" type="FunctionManager">
+                                                    <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Player.ID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="304750765676352">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="893894219154186" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">(Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))) -32</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="639517280074019" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y-32</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="888970554677336" type="ExplosiveBlock" />
+                                                <action id="-3" name="Create object" sid="853063671051670" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                    <param id="3" name="Y">Explosion_Y</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="569778049637474">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="106339736677034" type="System" />
+                                        <condition id="-14" name="Compare variable" sid="874553012820388" type="System">
+                                            <param id="0" name="Variable">LeftCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="502609288889455" type="System">
+                                            <param id="0" name="Object to create">Flame</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Explosion_X - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                            <param id="3" name="Y">Explosion_Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="579959869806485">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="144369194864344" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Explosion_X</param>
+                                            <param id="2" name="Y">Explosion_Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="567750492545094" type="System">
+                                            <param id="0" name="Variable">DownCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="939221036743653" type="System">
+                                            <param id="0" name="Variable">DownCollision</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="302674779781745">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="432163906796877" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X </param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="341210290982144" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="522934940756052" type="Player" />
+                                                <action id="-3" name="Create object" sid="940494384379937" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X </param>
+                                                    <param id="3" name="Y">Explosion_Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="615161173851595" type="FunctionManager">
+                                                    <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Player.ID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="883290195807447">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="697439992157919" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X-32</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="881887776573680" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">(Explosion_Y + (64*loopindex(&quot;FireCreateLoop&quot;))) -32</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="929113737426148" type="ExplosiveBlock" />
+                                                <action id="-3" name="Create object" sid="912334653265868" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X </param>
+                                                    <param id="3" name="Y">Explosion_Y + (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="607129963745066">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="241248844300129" type="System" />
+                                        <condition id="-14" name="Compare variable" sid="201954659415579" type="System">
+                                            <param id="0" name="Variable">DownCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="885640612548194" type="System">
+                                            <param id="0" name="Object to create">Flame</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Explosion_X</param>
+                                            <param id="3" name="Y">Explosion_Y+ (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="861273696934664">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="896087319276487" type="System">
+                                            <param id="0" name="Object">SolidObjects</param>
+                                            <param id="1" name="X">Explosion_X</param>
+                                            <param id="2" name="Y">Explosion_Y- (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="217434262605467" type="System">
+                                            <param id="0" name="Variable">UpCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="938662409865300" type="System">
+                                            <param id="0" name="Variable">UpCollision</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="803973217505089">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="310402566770519" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X </param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="593547560728219" type="Player">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">Explosion_Y - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="166592715325038" type="Player" />
+                                                <action id="-3" name="Create object" sid="382060783002779" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X </param>
+                                                    <param id="3" name="Y">Explosion_Y - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="188924925270754" type="FunctionManager">
+                                                    <param id="0" name="Name">&quot;Player Dead&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Player.ID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="106652717575721">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="260014828321589" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="X co-ordinate">Explosion_X-32</param>
+                                                </condition>
+                                                <condition id="-2" name="Compare Y" sid="869108485168019" type="ExplosiveBlock">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Y co-ordinate">(Explosion_Y - (64*loopindex(&quot;FireCreateLoop&quot;))) -32</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="430048184763915" type="ExplosiveBlock" />
+                                                <action id="-3" name="Create object" sid="725032963364577" type="System">
+                                                    <param id="0" name="Object to create">Flame</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">Explosion_X </param>
+                                                    <param id="3" name="Y">Explosion_Y - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="759787772212734">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="450431487180968" type="System" />
+                                        <condition id="-14" name="Compare variable" sid="787040726241210" type="System">
+                                            <param id="0" name="Variable">UpCollision</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="738142844098390" type="System">
+                                            <param id="0" name="Object to create">Flame</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Explosion_X</param>
+                                            <param id="3" name="Y">Explosion_Y - (64*loopindex(&quot;FireCreateLoop&quot;))</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
