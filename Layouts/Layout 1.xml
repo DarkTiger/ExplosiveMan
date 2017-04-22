@@ -2126,7 +2126,7 @@
                         <Direction>-1</Direction>
                         <Next_X>96</Next_X>
                         <Next_Y>96</Next_Y>
-                        <Speed>1</Speed>
+                        <Speed>2</Speed>
                         <BombCount>1</BombCount>
                         <FlameSize>2</FlameSize>
                         <CurrentBombs>0</CurrentBombs>
@@ -2185,7 +2185,7 @@
                         <Next_X>544</Next_X>
                         <Next_Y>544</Next_Y>
                         <Speed>2</Speed>
-                        <BombCount>1</BombCount>
+                        <BombCount>2</BombCount>
                         <FlameSize>2</FlameSize>
                         <CurrentBombs>0</CurrentBombs>
                     </instance-variables>
