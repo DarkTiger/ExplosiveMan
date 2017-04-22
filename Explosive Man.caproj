@@ -305,6 +305,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="Explode" sid="840724084822750" type="boolean" />
+                <instance-variable name="playerID" sid="707173078216006" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Timer" sid="460371288453824">

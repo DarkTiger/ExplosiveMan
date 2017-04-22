@@ -282,6 +282,10 @@
                             <param id="2" name="X">int(Player.ImagePointX(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
                             <param id="3" name="Y">int(Player.ImagePointY(0)/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
                         </action>
+                        <action id="-10" name="Set value" sid="159567183033041" type="Bomb">
+                            <param id="0" name="Instance variable">playerID</param>
+                            <param id="1" name="Value">FunctionManager.Param(0)</param>
+                        </action>
                         <action id="-11" name="Add to" sid="894849964566769" type="Player">
                             <param id="0" name="Instance variable">CurrentBombs</param>
                             <param id="1" name="Value">1</param>
@@ -580,20 +584,6 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="462284874823828">
-                    <conditions>
-                        <condition id="0" name="On function" sid="191973143192202" type="FunctionManager">
-                            <param id="0" name="Name">&quot;OnExplodeBomb&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="573766075271884">
-                            <conditions />
-                            <actions />
-                        </event-block>
-                    </sub-events>
-                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="448183901345455" title="Bomb Management">
@@ -617,12 +607,13 @@
                     </conditions>
                     <actions>
                         <action behavior="Timer" id="0" name="Start timer" sid="278854804658703" type="Bomb">
-                            <param id="0" name="Duration">3</param>
+                            <param id="0" name="Duration">100</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;ExplodeTimer&quot;</param>
                         </action>
                     </actions>
                 </event-block>
+                <variable constant="0" name="FlameSize" sid="127533499227803" static="0" type="number">2</variable>
                 <event-block any="1" sid="922210306023323">
                     <conditions>
                         <condition behavior="Timer" id="0" name="On timer" sid="186702452873568" type="Bomb">
@@ -634,7 +625,36 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <variable constant="0" name="FlameSize" sid="127533499227803" static="0" type="number">2</variable>
+                        <event-block sid="590836621038527">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="287738832889932" type="Bomb">
+                                    <param id="0" name="Instance variable">playerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="474791281970674" type="System">
+                                    <param id="0" name="Variable">FlameSize</param>
+                                    <param id="1" name="Value">Player.FlameSize</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="371724732009841">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="616230693720433" type="Bomb">
+                                    <param id="0" name="Instance variable">playerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="805530876661991" type="System">
+                                    <param id="0" name="Variable">FlameSize</param>
+                                    <param id="1" name="Value">Player.FlameSize</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <variable constant="0" name="RightCollision" sid="669171115577545" static="0" type="number">0</variable>
                         <variable constant="0" name="LeftCollision" sid="978708903585461" static="0" type="number">0</variable>
                         <variable constant="0" name="UpCollision" sid="341822277982555" static="0" type="number">0</variable>
@@ -1118,7 +1138,9 @@
                             <param id="2" name="Value">-1</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Destroy" sid="790429798003356" type="PowerUP" />
+                    </actions>
                     <sub-events>
                         <event-block sid="232755513512992">
                             <conditions>
@@ -1134,10 +1156,39 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" sid="790429798003356" type="PowerUP" />
                                 <action id="-10" name="Set value" sid="419308488866513" type="Player">
                                     <param id="0" name="Instance variable">Speed</param>
                                     <param id="1" name="Value">Self.Speed * 2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="872875620927024">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="686642462490479" type="PowerUP">
+                                    <param id="0" name="Instance variable">index</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="464272863799675" type="Player">
+                                    <param id="0" name="Instance variable">FlameSize</param>
+                                    <param id="1" name="Value">Self.FlameSize + 1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="422878333681798">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="638053475916585" type="PowerUP">
+                                    <param id="0" name="Instance variable">index</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="761055489437538" type="Player">
+                                    <param id="0" name="Instance variable">BombCount</param>
+                                    <param id="1" name="Value">Self.BombCount + 1</param>
                                 </action>
                             </actions>
                         </event-block>

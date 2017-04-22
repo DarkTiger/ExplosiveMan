@@ -2504,6 +2504,7 @@
                     </properties>
                     <instance-variables>
                         <Explode>false</Explode>
+                        <playerID>0</playerID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
