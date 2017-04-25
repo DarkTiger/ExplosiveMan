@@ -333,6 +333,27 @@
                                 </condition>
                             </conditions>
                             <actions />
+                            <sub-events>
+                                <event-block sid="691056927989369">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="978306977350870" type="System">
+                                            <param id="0" name="Object">Bomb</param>
+                                            <param id="1" name="X">Player.Next_X</param>
+                                            <param id="2" name="Y">Player.Next_Y - GRID_SIZE_XY</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="238750916100797" type="Bomb">
+                                            <param id="0" name="Instance variable">kickedDirection</param>
+                                            <param id="1" name="Value">DIR_UP</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="463231564095870" type="Bomb">
+                                            <param id="0" name="Instance variable">kicked</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="886699613233405">
                             <conditions>
@@ -394,6 +415,27 @@
                                 </condition>
                             </conditions>
                             <actions />
+                            <sub-events>
+                                <event-block sid="788271474518287">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="815437998127172" type="System">
+                                            <param id="0" name="Object">Bomb</param>
+                                            <param id="1" name="X">Player.Next_X</param>
+                                            <param id="2" name="Y">Player.Next_Y + GRID_SIZE_XY</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="652447247836101" type="Bomb">
+                                            <param id="0" name="Instance variable">kickedDirection</param>
+                                            <param id="1" name="Value">DIR_DOWN</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="370275911502778" type="Bomb">
+                                            <param id="0" name="Instance variable">kicked</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="354153219920715">
                             <conditions>
@@ -458,6 +500,27 @@
                                 </condition>
                             </conditions>
                             <actions />
+                            <sub-events>
+                                <event-block sid="542155210873194">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="139823061052924" type="System">
+                                            <param id="0" name="Object">Bomb</param>
+                                            <param id="1" name="X">Player.Next_X - GRID_SIZE_XY</param>
+                                            <param id="2" name="Y">Player.Next_Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="620208361381009" type="Bomb">
+                                            <param id="0" name="Instance variable">kickedDirection</param>
+                                            <param id="1" name="Value">DIR_LEFT</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="436599815032483" type="Bomb">
+                                            <param id="0" name="Instance variable">kicked</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="777851724465435">
                             <conditions>
@@ -522,6 +585,27 @@
                                 </condition>
                             </conditions>
                             <actions />
+                            <sub-events>
+                                <event-block sid="793549125560624">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="472442152840040" type="System">
+                                            <param id="0" name="Object">Bomb</param>
+                                            <param id="1" name="X">Player.Next_X + GRID_SIZE_XY</param>
+                                            <param id="2" name="Y">Player.Next_Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="407328235809726" type="Bomb">
+                                            <param id="0" name="Instance variable">kickedDirection</param>
+                                            <param id="1" name="Value">DIR_RIGHT</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="776253992531827" type="Bomb">
+                                            <param id="0" name="Instance variable">kicked</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="463450212122911">
                             <conditions>
@@ -601,7 +685,7 @@
                     </conditions>
                     <actions>
                         <action id="-13" name="Set boolean" sid="623933961153671" type="Bomb">
-                            <param id="0" name="Instance variable">Explode</param>
+                            <param id="0" name="Instance variable">explode</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
@@ -625,7 +709,7 @@
                             <param id="0" name="Tag">&quot;ExplodeTimer&quot;</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" sid="984624065056431" type="Bomb">
-                            <param id="0" name="Instance variable">Explode</param>
+                            <param id="0" name="Instance variable">explode</param>
                         </condition>
                     </conditions>
                     <actions />
@@ -679,7 +763,7 @@
                                 <condition id="-10" name="For" sid="979941187674328" type="System">
                                     <param id="0" name="Name">&quot;FireCreateLoop&quot;</param>
                                     <param id="1" name="Start index">1</param>
-                                    <param id="2" name="End index">FlameSize</param>
+                                    <param id="2" name="End index">FlameSize-1</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -1127,13 +1211,25 @@
             <conditions>
                 <condition id="-19" name="On destroyed" sid="245938483462246" type="ExplosiveBlock" />
             </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="702963795780469" type="ExplosiveBlock">
-                    <param id="0" name="Object">PowerUP</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="435682830942574">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="690003247453651" type="System">
+                            <param id="0" name="First value">round(random(2))</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="702963795780469" type="ExplosiveBlock">
+                            <param id="0" name="Object">PowerUP</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="149651637848947">
             <conditions>
@@ -1208,6 +1304,100 @@
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-group description="" sid="336051339485645" title="Bomb Kicked Movement" />
+        <event-block sid="191656353673949">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="512172921901183" type="Bomb">
+                    <param id="0" name="Instance variable">kicked</param>
+                </condition>
+                <condition id="1" inverted="1" name="Is overlapping another object" sid="864866597489708" type="Bomb">
+                    <param id="0" name="Object">SolidObjects</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="504161725450310">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="991447793358268" type="Bomb">
+                            <param id="0" name="Instance variable">kickedDirection</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">DIR_UP</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="946481049788524" type="Bomb">
+                            <param id="0" name="Y">Self.Y - 4</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="197286198760483">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="397316062669003" type="Bomb">
+                            <param id="0" name="Instance variable">kickedDirection</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">DIR_DOWN</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="972535919393391" type="Bomb">
+                            <param id="0" name="Y">Self.Y + 4</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="651896233229436">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="182529514744389" type="Bomb">
+                            <param id="0" name="Instance variable">kickedDirection</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">DIR_RIGHT</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="460580175428269" type="Bomb">
+                            <param id="0" name="X">Self.X + 4</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="149585650458192">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="258118405299376" type="Bomb">
+                            <param id="0" name="Instance variable">kickedDirection</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">DIR_LEFT</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="513464896320917" type="Bomb">
+                            <param id="0" name="X">Self.X - 4</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="884157002398509">
+            <conditions>
+                <condition id="-22" name="Else" sid="103485966272336" type="System" />
+                <condition id="-8" name="Is boolean instance variable set" sid="950858971822497" type="Bomb">
+                    <param id="0" name="Instance variable">kicked</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="639271226385830" type="Bomb">
+                    <param id="0" name="Instance variable">kicked</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="879213522852874" type="Bomb">
+                    <param id="0" name="Instance variable">kickedDirection</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-1" name="Set X" sid="891748188412047" type="Bomb">
+                    <param id="0" name="X">int(Self.X/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                </action>
+                <action id="-2" name="Set Y" sid="342870168801733" type="Bomb">
+                    <param id="0" name="Y">int(Self.Y/GRID_SIZE_XY)*GRID_SIZE_XY+(GRID_SIZE_XY/2)</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

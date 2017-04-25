@@ -304,8 +304,10 @@
         <object-type name="Bomb" sid="106726358793918">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="Explode" sid="840724084822750" type="boolean" />
+                <instance-variable name="explode" sid="840724084822750" type="boolean" />
                 <instance-variable name="playerID" sid="707173078216006" type="number" />
+                <instance-variable name="kicked" sid="368787307835569" type="boolean" />
+                <instance-variable name="kickedDirection" sid="323948678035469" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Timer" sid="460371288453824">
@@ -316,14 +318,28 @@
                 <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="423046893843270" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\dbga_47\Desktop\Progetti\Construct 2\Assets\Sprites\Bomberman\Bomb_f01.png">
                         <collision-poly>
-                            <point x="0" y="0.015625" />
-                            <point x="1" y="0" />
-                            <point x="1" y="1" />
-                            <point x="0" y="1" />
+                            <point x="0.015625" y="0.015625" />
+                            <point x="0.984375" y="0.015625" />
+                            <point x="0.984375" y="0.984375" />
+                            <point x="0.015625" y="0.984375" />
                         </collision-poly>
                     </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\dbga_47\Desktop\Progetti\Construct 2\Assets\Sprites\Bomberman\Bomb_f02.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\dbga_47\Desktop\Progetti\Construct 2\Assets\Sprites\Bomberman\Bomb_f03.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\dbga_47\Desktop\Progetti\Construct 2\Assets\Sprites\Bomberman\Bomb_f02.png">
+                        <collision-poly>
+                            <point x="0.015625" y="0.015625" />
+                            <point x="0.984375" y="0.015625" />
+                            <point x="0.984375" y="0.984375" />
+                            <point x="0.015625" y="0.984375" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\dbga_47\Desktop\Progetti\Construct 2\Assets\Sprites\Bomberman\Bomb_f03.png">
+                        <collision-poly>
+                            <point x="0.015625" y="0.015625" />
+                            <point x="0.984375" y="0.015625" />
+                            <point x="0.984375" y="0.984375" />
+                            <point x="0.015625" y="0.984375" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
